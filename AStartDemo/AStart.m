@@ -24,7 +24,7 @@
     self.mOpenList = [NSMutableArray array];
     self.mCloseList = [NSMutableArray array];
     CFAbsoluteTime beginTime = CFAbsoluteTimeGetCurrent();
-    BOOL hasPath = [self findPathWithGrid:grid];
+    BOOL hasPath = [self findPathStep];
     CFAbsoluteTime endTime = CFAbsoluteTimeGetCurrent();
     NSLog(@"本次寻路耗时:%f", endTime - beginTime);
     return hasPath;//[self findPathStep];
