@@ -30,7 +30,7 @@
     for (int y = 0; y < self.mRowNums; y ++) {
         for (int x = 0; x < self.mCloumnNums; x ++) {
             MapNode *node = [[MapNode alloc] initWithX:x andY:y];
-            node.walkEnable = arc4random() % 100 < 70;
+            node.walkEnable = arc4random() % 100 < 90;
             node.scale = self.mScale;
             [_mMapNodes addObject:node];
         }

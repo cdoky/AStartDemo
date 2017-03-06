@@ -26,7 +26,7 @@
     CFAbsoluteTime beginTime = CFAbsoluteTimeGetCurrent();
     BOOL hasPath = [self findPathStep];
     CFAbsoluteTime endTime = CFAbsoluteTimeGetCurrent();
-    NSLog(@"本次寻路耗时:%f", endTime - beginTime);
+    NSLog(@"本次寻路耗时:%fms", (endTime - beginTime) * 1000);
     return hasPath;//[self findPathStep];
 }
 
@@ -45,13 +45,10 @@
             NSLog(@"未找到路径");
             return false;
         }
-        MapNode __block *tmpNode = [self.mOpenList firstObject];
-        [self.mOpenList enumerateObjectsUsingBlock:^(MapNode * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (tmpNode.f>obj.f) {
-                tmpNode = obj;
-            }
+        [self.mOpenList sortUsingComparator:^NSComparisonResult(MapNode * _Nonnull obj1, MapNode * _Nonnull obj2) {
+            return obj1.f > obj2.f;
         }];
-        node = tmpNode;
+        node = [self.mOpenList firstObject];
         [self.mOpenList removeObject:node];
         stepCount ++;
     }
@@ -133,7 +130,6 @@
         node = node.parent;
         [self.mPathVec insertObject:node atIndex:0];
     }
-//    [self printPath];
     return self.mPathVec;
 }
 

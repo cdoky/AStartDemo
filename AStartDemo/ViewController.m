@@ -36,7 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self buildMapViewByNumCloumns:50 andNumRows:50 andScale:10];
+    [self buildMapViewByNumCloumns:90 andNumRows:60 andScale:10];
     [self initLayer];
     [self initBrush];
     [self drawMap];
@@ -184,7 +184,7 @@
     int rows = [self.mTxtRows.text intValue];
     CGFloat scale = [self.mTxtScale.text floatValue];
     
-    self.mMapGrid = [[MapGrid alloc] initWithCloumnNums:columns==0?50:columns andRowNums:rows==0?50:rows andScale:scale<5.0f?5.0f:scale];
+    self.mMapGrid = [[MapGrid alloc] initWithCloumnNums:columns==0?90:columns andRowNums:rows==0?60:rows andScale:scale<10.0f?10.0f:scale];
     [self.mMapGrid buildMapNode];
     [self initBrush];
     [self drawMap];
